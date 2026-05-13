@@ -1,0 +1,27 @@
+kind = "mobile"
+previewPath = "/"
+title = "Brainbox"
+version = "1.0.0"
+id = "artifacts/brainbox"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+name = "expo"
+paths = [ "/" ]
+localPort = 22830
+
+[services.development]
+run = "pnpm --filter @workspace/brainbox run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/brainbox", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/brainbox", "run", "serve" ]
+
+[services.env]
+PORT = "22830"
+BASE_PATH = "/"
