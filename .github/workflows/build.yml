@@ -2,7 +2,7 @@ name: EAS Build
 on:
   workflow_dispatch:
   push:
-    branches: 
+    branches: [main]
 
 jobs:
   build:
@@ -15,10 +15,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
